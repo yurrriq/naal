@@ -76,7 +76,9 @@ Alternatively, I could send the username...
 
 
 The main point of this script is to obviate the need for me manually provide my
-password and OTP token. I prefer to let \sh{expect} \sh{interact} on my behalf.
+password and OTP token. I prefer to let
+\hrefootnote{https://core.tcl-lang.org/expect/index}{Expect} \sh{interact} on my
+behalf.
 
 
 When prompted for the [[password]], get it from the store and \sh{send} it.
