@@ -12,7 +12,7 @@ A literate [Expect] script, written with [Noweb] and
 
 
 <!-- Named Links -->
-[Travis badge]: https://img.shields.io/travis/yurrriq/naal/master?style=for-the-badge
+[Travis badge]: https://travis-ci.org/yurrriq/naal.svg?branch=master
 [Travis]: https://travis-ci.org/yurrriq/naal
 [Expect]: https://core.tcl-lang.org/expect/index
 [Noweb]: https://core.tcl-lang.org/expect/index
