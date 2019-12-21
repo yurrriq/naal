@@ -2,10 +2,14 @@
 
 spawn -noecho aws-azure-login --force-refresh --no-prompt
 
-set password [ exec pass show "Azure AD" | head -n1 ]
-expect "*Password:*" { send "$password\n" }
+expect "*Password:*" {
+    set password [ exec pass show "Azure AD" | head -n1 ]
+    send "$password\r"
+}
 
-set verification_code [ exec pass otp show "Azure AD" ]
-expect "*Verification Code:*" { send "$verification_code\n" }
+expect "*Verification Code:*" {
+    set verification_code [ exec pass otp show "Azure AD" ]
+    send "$verification_code\r"
+}
 
 interact

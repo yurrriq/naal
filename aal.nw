@@ -77,32 +77,24 @@ The main point of this script is to obviate the need for me manually provide my
 password and OTP token. I prefer to let \sh{expect} \sh{interact} on my behalf.
 
 
-Get the [[password]] from the store.
+When prompted for the [[password]], get it from the store and \sh{send} it.
 
 <<Send the password when expected>>=
-set password [ exec <<Get the password from the store>> ]
+expect "*Password:*" {
+    set password [ exec <<Get the password from the store>> ]
+    send "$password\r"
+}
 @ %def password
 
 
-Send it when expected.
-
-<<Send the password when expected>>=
-expect "*Password:*" { send "$password\n" }
-@
-
-
-Generate an OTP token.
+When prompted for an OTP token, generate one and \sh{send} it.
 
 <<Send the OTP token when expected>>=
-set verification_code [ exec <<Generate an OTP token>> ]
+expect "*Verification Code:*" {
+    set verification_code [ exec <<Generate an OTP token>> ]
+    send "$verification_code\r"
+}
 @ %def verification_code
-
-
-Send it when expected.
-
-<<Send the OTP token when expected>>=
-expect "*Verification Code:*" { send "$verification_code\n" }
-@
 
 
 %% \section{The script}
