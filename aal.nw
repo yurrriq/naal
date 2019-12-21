@@ -1,0 +1,128 @@
+\documentclass[a4paper,nobib,xelatex]{tufte-handout}
+
+\title{Non-interactive AWS Azure Login}
+
+\author{Eric Bailey}
+
+\date{%
+  20th December, 2019%
+  %% \thanks{Last updated \today}
+}
+
+\input{preamble}
+
+\begin{document}
+\maketitle
+@
+
+\section{Password management}
+
+For password management, I use \hrefootnote{https://www.passwordstore.org/}{pass}.
+
+<<Get the password from the store>>=
+pass show "Azure AD" | head -n1
+@
+\marginnote{%
+  This assumes \sh{Azure AD} is in the password store.%
+}
+
+
+On top of that, I use the \hrefootnote{https://github.com/tadfisher/pass-otp}{pass-otp}
+extension to manange OTP tokens.
+
+<<Generate an OTP token>>=
+pass otp show "Azure AD"
+@
+\marginnote{%
+  This assumes \sh{Azure AD} is configured.%
+}
+
+
+With these two tools, I can automate refreshing my AWS credentials using Azure
+AD.
+
+
+\section{Automated interaction}
+
+Spawn a non-interactive
+\hrefootnote{https://github.com/sportradar/aws-azure-login}{aws-azure-login} process,
+forcing a credential refresh, even if they are still valid.
+
+<<Spawn aws-azure-login process>>=
+spawn aws-azure-login --force-refresh --no-prompt
+@
+
+\marginnote{%
+  This requires the environment variable, \sh{AWS_PROFILE}, to be set,
+  and \sh{~/.aws/config} to be properly configured.%
+}
+
+
+Alternatively, I could send the username...
+
+\begin{minted}{bash}
+  set username [ exec pass show "Azure AD" | awk "/Username:/ { print \$2 }" ]
+  expect "*Username*" { send "$username\n" }
+\end{minted}
+
+
+... and duration to their respective prompts.
+
+\begin{minted}{bash}
+  expect "*Duration*" { send "8\n" }
+\end{minted}
+
+
+The main point of this script is to obviate the need for me manually provide my
+password and OTP token. I prefer to let \sh{expect} \sh{interact} on my behalf.
+
+
+Get the [[password]] from the store.
+
+<<Send the password when expected>>=
+set password [ exec <<Get the password from the store>> ]
+@ %def password
+
+
+Send it when expected.
+
+<<Send the password when expected>>=
+expect "*Password:*" { send "$password\n" }
+@
+
+
+Generate an OTP token.
+
+<<Send the OTP token when expected>>=
+set verification_code [ exec <<Generate an OTP token>> ]
+@ %def verification_code
+
+
+Send it when expected.
+
+<<Send the OTP token when expected>>=
+expect "*Verification Code:*" { send "$verification_code\n" }
+@
+
+
+%% \section{The script}
+
+\begin{marginfigure}
+<<*>>=
+#! /usr/bin/env expect
+
+<<Spawn aws-azure-login process>>
+
+<<Send the password when expected>>
+
+<<Send the OTP token when expected>>
+
+interact
+@
+\end{marginfigure}
+
+\marginnote{%
+  Last updated {\today} {\currenttime} GMT.%
+}
+
+\end{document}

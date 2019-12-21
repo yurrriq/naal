@@ -1,0 +1,46 @@
+\usepackage[ddmmyyyy]{datetime}
+\renewcommand{\dateseparator}{.}
+
+\usepackage{fontspec}
+\setmonofont[Mapping=tex-text,Scale]{Iosevka}
+
+\usepackage{hyperref}
+\newcommand{\hrefootnote}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+\makeatletter
+\hypersetup{
+  pdffitwindow=true,
+  pdfstartview={FitH},
+  %% pdftitle={},
+  pdfauthor={Eric Bailey <eric@ericb.me>},
+  %% pdfsubject={My GAP, Haskell, and J solutions to Project Euler problems},
+  %% pdfkeywords={Project Euler, GAP, Haskell, J, maths, puzzles},
+  pdfinfo={
+    CreationDate={D:20191220212500},
+    ModificationDate={D:\pdfdate},
+  },
+  colorlinks=true,
+  %% linkcolor=ErlangRed,
+  %% urlcolor=ErlangRed
+}
+\makeatother
+
+\usepackage{minted}
+\setminted{autogobble,baselinestretch=1,fontsize=\scriptsize}
+\newmintinline[sh]{bash}{}
+
+%% HACK: https://tex.stackexchange.com/a/200725/45537
+\usepackage{ifxetex}
+\ifxetex
+  \newcommand{\textls}[2][5]{%
+    \begingroup\addfontfeatures{LetterSpace=#1}#2\endgroup
+  }
+  \renewcommand{\allcapsspacing}[1]{\textls[15]{#1}}
+  \renewcommand{\smallcapsspacing}[1]{\textls[10]{#1}}
+  \renewcommand{\allcaps}[1]{\textls[15]{\MakeTextUppercase{#1}}}
+  \renewcommand{\smallcaps}[1]{\smallcapsspacing{\scshape\MakeTextLowercase{#1}}}
+  \renewcommand{\textsc}[1]{\smallcapsspacing{\textsmallcaps{#1}}}
+\fi
+
+
+\usepackage{noweb}
+\noweboptions{smallcode,shortxref,hideunuseddefs,noidentxref,nomargintag,webnumbering}
