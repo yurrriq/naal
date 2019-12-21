@@ -1,6 +1,6 @@
 #! /usr/bin/env expect
 
-spawn aws-azure-login --force-refresh --no-prompt
+spawn -noecho aws-azure-login --force-refresh --no-prompt
 
 set password [ exec pass show "Azure AD" | head -n1 ]
 expect "*Password:*" { send "$password\n" }

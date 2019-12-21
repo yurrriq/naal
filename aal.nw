@@ -49,7 +49,7 @@ Spawn a non-interactive
 forcing a credential refresh, even if they are still valid.
 
 <<Spawn aws-azure-login process>>=
-spawn aws-azure-login --force-refresh --no-prompt
+spawn -noecho aws-azure-login --force-refresh --no-prompt
 @
 
 \marginnote{%

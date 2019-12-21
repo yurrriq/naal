@@ -19,5 +19,5 @@ aal.tex: aal.nw
 
 
 aal.sh: aal.nw
-	@ notangle $< | shfmt -i 4 | cpif $@
+	@ notangle $< | cpif $@
 	@ chmod +x $@
