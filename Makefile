@@ -5,21 +5,21 @@ endif
 latexmk_flags += -cd -shell-escape -xelatex
 
 
-all: bin/aal docs/aal.pdf
+all: bin/naal docs/naal.pdf
 
 
-bin/aal: src/aal.nw
+bin/naal: src/naal.nw
 	@ mkdir -p $(@D)
 	@ notangle $< | cpif $@
 	@ chmod +x $@
 
 
-docs/aal.pdf: export TZ='America/Chicago'a
-docs/aal.pdf: src/aal.tex src/preamble.tex
+docs/naal.pdf: export TZ='America/Chicago'a
+docs/naal.pdf: src/naal.tex src/preamble.tex
 	@ mkdir -p $(@D)
 	@ latexmk $(latexmk_flags) -outdir=../$(@D) $<
 
 
-.INTERMEDIATE: src/aal.tex
-src/aal.tex: src/aal.nw
+.INTERMEDIATE: src/naal.tex
+src/naal.tex: src/naal.nw
 	@ noweave -n -delay -index $< | cpif $@
