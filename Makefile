@@ -5,7 +5,12 @@ endif
 latexmk_flags += -cd -pdf
 
 
-all: aal.sh aal.pdf
+all: bin/aal aal.pdf
+
+
+bin/aal: aal.nw
+	@ notangle $< | cpif $@
+	@ chmod +x $@
 
 
 aal.pdf: export TZ='America/Chicago'
@@ -16,8 +21,3 @@ aal.pdf: aal.tex preamble.tex
 .INTERMEDIATE: aal.tex
 aal.tex: aal.nw
 	@ noweave -n -delay -index $< | cpif $@
-
-
-aal.sh: aal.nw
-	@ notangle $< | cpif $@
-	@ chmod +x $@
