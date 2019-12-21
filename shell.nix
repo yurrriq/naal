@@ -1,17 +1,10 @@
 { pkgs ? import ./nix {} }:
 
+let
+  pkg = import ./. { inherit pkgs; };
+in
 
 pkgs.mkShell {
-
-  FONTCONFIG_FILE = pkgs.makeFontsConf {
-    fontDirectories = [ pkgs.iosevka ];
-  };
-
-  buildInputs = with pkgs; [
-    noweb
-    python36Packages.pygments
-    which
-    xelatex-noweb
-  ];
-
+  inherit (pkg) FONTCONFIG_FILE;
+  buildInputs = with pkg; nativeBuildInputs ++ buildInputs;
 }

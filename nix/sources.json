@@ -12,15 +12,27 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "master",
-        "description": "Nix Packages collection",
-        "homepage": null,
+        "branch": "nixos-19.09",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "60820d8d83e50dff9291ac2d7ee08f4bfb1c042a",
-        "sha256": "19bra59qb0d15i4q9dm3mx63skj4iyjfcwgbnl2bbh7radlsa4wj",
+        "repo": "nixpkgs-channels",
+        "rev": "808d3c6d12386009e1d1b8e8461d1e8d8fdc5ff1",
+        "sha256": "07d910k8q6q25vk67k2v8dnpn9b41mvc0rzqwlx9zddxqrdxa9bz",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/60820d8d83e50dff9291ac2d7ee08f4bfb1c042a.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/808d3c6d12386009e1d1b8e8461d1e8d8fdc5ff1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nur": {
+        "branch": "master",
+        "description": "Nix User Repository: User contributed nix packages [maintainer=@Mic92]",
+        "homepage": "https://github.com/nix-community/NUR",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "6f55aa953a5bc2be3be3ba1c81e2fcf45cd0d770",
+        "sha256": "06ag016lfnki9m9f42h74f9zv9q7sjzbncp03g7crwpc0ysyyhm0",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/NUR/archive/6f55aa953a5bc2be3be3ba1c81e2fcf45cd0d770.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

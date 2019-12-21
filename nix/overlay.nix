@@ -6,7 +6,7 @@ self: super: rec {
     };
   };
 
-  xelatex-noweb = super.texlive.combine {
+  xelatex = super.texlive.combine {
     inherit noweb;
     inherit (super.texlive) scheme-small
       datetime
