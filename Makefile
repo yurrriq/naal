@@ -5,19 +5,21 @@ endif
 latexmk_flags += -cd -pdf
 
 
-all: bin/aal aal.pdf
+all: bin/aal docs/aal.pdf
 
 
-bin/aal: aal.nw
+bin/aal: src/aal.nw
+	@ mkdir -p $(@D)
 	@ notangle $< | cpif $@
 	@ chmod +x $@
 
 
-aal.pdf: export TZ='America/Chicago'
-aal.pdf: aal.tex preamble.tex
-	@ latexmk $(latexmk_flags) $<
+docs/aal.pdf: export TZ='America/Chicago'a
+docs/aal.pdf: src/aal.tex src/preamble.tex
+	@ mkdir -p $(@D)
+	@ latexmk $(latexmk_flags) -outdir=../$(@D) $<
 
 
-.INTERMEDIATE: aal.tex
-aal.tex: aal.nw
+.INTERMEDIATE: src/aal.tex
+src/aal.tex: src/aal.nw
 	@ noweave -n -delay -index $< | cpif $@
