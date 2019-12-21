@@ -61,8 +61,10 @@ spawn -noecho aws-azure-login --force-refresh --no-prompt
 Alternatively, I could send the username...
 
 \begin{minted}{bash}
-  set username [ exec pass show "Azure AD" | awk "/Username:/ { print \$2 }" ]
-  expect "*Username*" { send "$username\n" }
+  expect "*Username*" {
+      set username [ exec pass show "Azure AD" | awk "/Username:/ { print \$2 }" ]
+      send "$username\n"
+  }
 \end{minted}
 
 
