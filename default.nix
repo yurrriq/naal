@@ -28,4 +28,12 @@ pkgs.stdenv.mkDerivation rec {
   makeFlags = [
     "PREFIX=${placeholder "out"}"
   ];
+
+  meta = with pkgs.stdenv.lib; {
+    description = "Non-interactive AWS Azure Login";
+    homepage = https://github.com/yurrriq/naal;
+    license = licenses.mit;
+    maintainers = with maintainers; [ yurrriq ];
+    platforms = platforms.linux;
+  };
 }
