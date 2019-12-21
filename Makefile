@@ -2,7 +2,7 @@ ifneq (,$(findstring B,$(MAKEFLAGS)))
 latexmk_flags = -gg
 endif
 
-latexmk_flags += -cd -pdf
+latexmk_flags += -cd -shell-escape -xelatex
 
 
 all: bin/aal docs/aal.pdf

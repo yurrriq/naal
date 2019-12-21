@@ -1,2 +1,0 @@
-# -*- mode: perl -*-
-$pdflatex = q/xelatex %O -interaction=nonstopmode -shell-escape %S/;
