@@ -16,6 +16,11 @@ install: all
 	@ install -m755 bin/naal "${PREFIX}/bin"
 
 
+.PHONY: build
+build:
+	@ nix build --arg local true
+
+
 .PHONY: update
 update: package ?= nixpkgs
 update: sources := nix/sources.json

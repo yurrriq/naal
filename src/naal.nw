@@ -6,7 +6,6 @@
 
 \date{%
   20th December, 2019%
-  %% \thanks{Last updated \today}
 }
 
 \input{preamble}
@@ -20,7 +19,7 @@
 For password management, I use \hrefootnote{https://www.passwordstore.org/}{pass}.
 
 <<Get the password from the store>>=
-pass show "Azure AD" | head -n1
+pass show "Azure AD" 2>/dev/null | head -n1
 @
 \marginnote{%
   This assumes \sh{Azure AD} is in the password store.%
@@ -95,7 +94,7 @@ When prompted for an OTP token, generate one and \sh{send} it.
 
 <<Send the OTP token when expected>>=
 expect "*Verification Code:*" {
-    set verification_code [ exec <<Generate an OTP token>> ]
+    set verification_code [ exec <<Generate an OTP token>> 2>/dev/null ]
     send "$verification_code\r"
 }
 @ %def verification_code
