@@ -15,6 +15,19 @@ install: all
 	@ install -dm755 "${PREFIX}/bin"
 	@ install -m755 bin/naal "${PREFIX}/bin"
 
+
+.PHONY: update
+update: package ?= nixpkgs
+update: sources := nix/sources.json
+update: rev = $(shell jq -r '.["${package}"].rev[:8]' ${sources})
+update: COMMIT_MSG_FILE = .git/COMMIT_EDITMSG
+update:
+	@ niv update ${package}
+	@ git add ${sources}
+	@ jq '"${package}: ${rev} -> \(.["${package}"].rev[:8])"' \
+	${sources} | xargs git commit -m
+
+
 bin/naal: src/naal.nw
 	@ mkdir -p $(@D)
 	@ notangle $< | cpif $@
