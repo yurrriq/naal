@@ -8,17 +8,14 @@ latexmk_flags += -cd -shell-escape -xelatex
 all: bin/naal docs/naal.pdf
 
 
-.PHONY: install
-install: all
-	@ install -dm755 "${PREFIX}/docs"
-	@ install -m444 docs/naal.pdf "${PREFIX}/docs/"
-	@ install -dm755 "${PREFIX}/bin"
-	@ install -m755 bin/naal "${PREFIX}/bin"
-
-
 .PHONY: build
 build:
-	@ nix build --arg local true
+	@ nix build -f . naal
+
+
+.PHONY: doc
+doc:
+	@ nix build -f . naal.doc
 
 
 .PHONY: update

@@ -22,9 +22,18 @@ pkgs.stdenv.mkDerivation rec {
     (pass.withExtensions (exts: [ exts.pass-otp ]))
   ];
 
-  makeFlags = [
-    "PREFIX=${placeholder "out"}"
-  ];
+  outputs = [ "out" "bin" "doc" ];
+
+  installPhase = ''
+    install -dm755 "$bin"
+    install -m755 bin/naal "$bin"
+
+    install -dm755 "$doc"
+    install -m444 docs/naal.pdf "$doc"
+
+    install -dm755 "$out/bin"
+    ln -sf "$bin/naal" "$_"
+  '';
 
   meta = with pkgs.stdenv.lib; {
     description = "Non-interactive AWS Azure Login";
