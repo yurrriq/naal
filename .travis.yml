@@ -9,13 +9,12 @@ script:
 - nix-build -A naal
 - nix-build -A naal.doc
 
-# TODO
-# deploy:
-#   provider: pages
-#   skip_cleanup: true
-#   github_token: $GITHUB_TOKEN
-#   keep_history: true
-#   target_branch: gh-pages
-#   local_dir: result-doc
-#   on:
-#     branch: master
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  target_branch: gh-pages
+  local_dir: result-doc
+  on:
+    branch: master
