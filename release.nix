@@ -22,17 +22,14 @@ pkgs.stdenv.mkDerivation rec {
     (pass.withExtensions (exts: [ exts.pass-otp ]))
   ];
 
-  outputs = [ "out" "bin" "doc" ];
+  outputs = [ "out" "doc" ];
 
   installPhase = ''
-    install -dm755 "$bin"
-    install -m755 bin/naal "$bin"
+    install -dm755 "$out/bin"
+    install -m755 bin/naal "$_"
 
     install -dm755 "$doc"
-    install -m444 docs/naal.pdf "$doc"
-
-    install -dm755 "$out/bin"
-    ln -sf "$bin/naal" "$_"
+    install -m444 docs/naal.pdf "$_"
   '';
 
   meta = with pkgs.stdenv.lib; {
