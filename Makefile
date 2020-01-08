@@ -36,7 +36,7 @@ bin/naal: src/naal.nw
 	@ chmod +x $@
 
 
-docs/naal.pdf: export TZ='America/Chicago'a
+docs/naal.pdf: export TZ='America/Chicago'
 docs/naal.pdf: src/naal.tex src/preamble.tex
 	@ mkdir -p $(@D)
 	@ latexmk $(latexmk_flags) -outdir=../$(@D) $<

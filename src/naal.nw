@@ -2,10 +2,12 @@
 
 \title{Non-interactive AWS Azure Login}
 
+
 \author{Eric Bailey}
 
 \date{%
-  20th December, 2019%
+  20th December, 2019
+  \thanks{Updated {\today} {\currenttime} GMT.}%
 }
 
 \input{preamble}
@@ -16,7 +18,7 @@
 
 \section{Password management}
 
-For password management, I use \hrefootnote{https://www.passwordstore.org/}{pass}.
+For password management, use \hrefootnote{https://www.passwordstore.org/}{pass}.
 
 <<Get the password from the store>>=
 pass show "Azure AD" 2>/dev/null | head -n1
@@ -26,8 +28,9 @@ pass show "Azure AD" 2>/dev/null | head -n1
 }
 
 
-On top of that, I use the \hrefootnote{https://github.com/tadfisher/pass-otp}{pass-otp}
-extension to manange OTP tokens.
+On top of that, use the
+\hrefootnote{https://github.com/tadfisher/pass-otp}{pass-otp} extension to
+manange OTP tokens.
 
 <<Generate an OTP token>>=
 pass otp show "Azure AD"
@@ -37,8 +40,7 @@ pass otp show "Azure AD"
 }
 
 
-With these two tools, I can automate refreshing my AWS credentials using Azure
-AD.
+With these two tools, automate refreshing AWS credentials using Azure AD.
 
 
 \section{Automated interaction}
@@ -57,7 +59,7 @@ spawn -noecho aws-azure-login --force-refresh --no-prompt
 }
 
 
-Alternatively, I could send the username...
+Alternatively, send the username...
 
 \begin{minted}{bash}
   expect "*Username*" {
@@ -74,10 +76,10 @@ Alternatively, I could send the username...
 \end{minted}
 
 
-The main point of this script is to obviate the need for me manually provide my
-password and OTP token. I prefer to let
-\hrefootnote{https://core.tcl-lang.org/expect/index}{Expect} \sh{interact} on my
-behalf.
+The main point of this script is to obviate the need to manually provide a
+password and OTP token, letting
+\hrefootnote{https://core.tcl-lang.org/expect/index}{Expect} \sh{interact} on
+the user's behalf.
 
 
 When prompted for the [[password]], get it from the store and \sh{send} it.
@@ -102,7 +104,7 @@ expect "*Verification Code:*" {
 
 %% \section{The script}
 
-\begin{marginfigure}
+\begin{marginfigure}[-21\baselineskip]
 <<*>>=
 #! /usr/bin/env expect
 
@@ -115,9 +117,5 @@ expect "*Verification Code:*" {
 interact
 @
 \end{marginfigure}
-
-\marginnote{%
-  Last updated {\today} {\currenttime} GMT.%
-}
 
 \end{document}
