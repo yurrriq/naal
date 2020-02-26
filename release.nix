@@ -3,7 +3,7 @@
 pkgs.stdenv.mkDerivation rec {
   pname = "naal";
   version = builtins.readFile ./VERSION;
-  src = pkgs.nix-gitignore.gitignoreSource [".git/" "bin" "docs" ] ./.;
+  src = pkgs.nix-gitignore.gitignoreSource [ ".git/" "bin" "docs" ] ./.;
 
   FONTCONFIG_FILE = with pkgs; makeFontsConf {
     fontDirectories = [ iosevka ];
