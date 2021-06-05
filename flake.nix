@@ -18,6 +18,9 @@
     in
     {
       overlays = {
+        naal = final: prev: {
+          inherit (self.packages.x86_64-linux) naal;
+        };
         noweb = final: prev: rec {
           noweb = prev.noweb.override {
             icon-lang = prev.icon-lang.override {
