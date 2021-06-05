@@ -15,7 +15,7 @@ automate [AWS Azure login], so I don't have to type my [pass]word, or even use
 
 
 <!-- Named Links -->
-[GitHub workflow badge]: https://img.shields.io/github/workflow/status/yurrriq/naal/build.yml?style=for-the-badge
+[GitHub workflow badge]: https://img.shields.io/github/workflow/status/yurrriq/naal/Publish%20PDF%20to%20site?style=for-the-badge
 [GitHub workflow]: https://github.com/yurrriq/naal/actions/workflows/build.yml
 [Release badge]: https://img.shields.io/github/v/tag/yurrriq/naal?sort=semver&style=for-the-badge
 [Release]: https://github.com/yurrriq/naal/releases/latest
