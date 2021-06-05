@@ -1,6 +1,7 @@
-[![Build Status][Travis badge]][Travis]
-[![Latest release][Release badge]][Release]
 [![Built with Nix][Built with Nix badge]][Built with Nix]
+[![Build Status][GitHub workflow badge]][GitHub workflow]
+[![Latest release][Release badge]][Release]
+
 
 # naal
 
@@ -14,8 +15,8 @@ automate [AWS Azure login], so I don't have to type my [pass]word, or even use
 
 
 <!-- Named Links -->
-[Travis badge]: https://img.shields.io/travis/yurrriq/naal/main?style=for-the-badge
-[Travis]: https://travis-ci.org/yurrriq/naal
+[GitHub workflow badge]: https://img.shields.io/github/workflow/status/yurrriq/naal/build.yml?style=for-the-badge
+[GitHub workflow]: https://github.com/yurrriq/naal/actions/workflows/build.yml
 [Release badge]: https://img.shields.io/github/v/tag/yurrriq/naal?sort=semver&style=for-the-badge
 [Release]: https://github.com/yurrriq/naal/releases/latest
 [Built with Nix]: https://builtwithnix.org

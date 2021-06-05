@@ -89,7 +89,7 @@
             install -m755 bin/naal "$_"
 
             install -dm755 "$doc"
-            install -m444 docs/naal.pdf "$_"
+            install -m444 src/_config.yml src/index.md docs/naal.pdf "$_"
           '';
 
           meta = with pkgs.lib; {
