@@ -11,9 +11,6 @@ insert_final_newline = true
 [bin/naal]
 indent_size = 4
 
-[*.json]
-indent_size = 4
-
 [Makefile]
 indent_style = tab
 
