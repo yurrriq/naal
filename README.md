@@ -14,7 +14,7 @@ automate [AWS Azure login], so I don't have to type my [pass]word, or even use
 
 
 <!-- Named Links -->
-[Travis badge]: https://img.shields.io/travis/yurrriq/naal/master?style=for-the-badge
+[Travis badge]: https://img.shields.io/travis/yurrriq/naal/main?style=for-the-badge
 [Travis]: https://travis-ci.org/yurrriq/naal
 [Release badge]: https://img.shields.io/github/v/tag/yurrriq/naal?sort=semver&style=for-the-badge
 [Release]: https://github.com/yurrriq/naal/releases/latest
