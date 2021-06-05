@@ -63,39 +63,48 @@
       };
 
       packages.x86_64-linux = {
-        naal = pkgs.stdenv.mkDerivation rec {
+        naal = with pkgs; stdenv.mkDerivation rec {
           pname = "naal";
           version = builtins.readFile ./VERSION;
-          src = pkgs.nix-gitignore.gitignoreSource [ ".git/" "bin" "docs" ] ./.;
+          src = nix-gitignore.gitignoreSource [ ".git/" "bin" "docs" ] ./.;
 
-          FONTCONFIG_FILE = with pkgs; makeFontsConf {
+          FONTCONFIG_FILE = makeFontsConf {
             fontDirectories = [ iosevka ];
           };
 
-          nativeBuildInputs = with pkgs; [
+          nativeBuildInputs = [
             noweb
             python3Packages.pygments
             which
             xelatex
           ];
 
-          buildInputs = with pkgs; [
+          buildInputs = [
             expect
+            makeWrapper
             nodePackages.aws-azure-login
             (pass.withExtensions (exts: [ exts.pass-otp ]))
           ];
 
           outputs = [ "out" "doc" ];
 
-          installPhase = ''
-            install -dm755 "$out/bin"
-            install -m755 bin/naal "$_"
+          installPhase =
+            let
+              binPath = lib.makeBinPath [
+                nodePackages.aws-azure-login
+                (pass.withExtensions (exts: [ exts.pass-otp ]))
+              ];
+            in
+            ''
+              install -dm755 "$out/bin"
+              install -m755 bin/naal "$_"
+              wrapProgram "$out"/bin/naal --prefix PATH ${binPath}
 
-            install -dm755 "$doc"
-            install -m444 src/_config.yml src/index.md docs/naal.pdf "$_"
-          '';
+              install -dm755 "$doc"
+              install -m444 src/_config.yml src/index.md docs/naal.pdf "$_"
+            '';
 
-          meta = with pkgs.lib; {
+          meta = with lib; {
             description = "Non-interactive AWS Azure Login";
             homepage = "https://github.com/yurrriq/naal";
             license = licenses.mit;
