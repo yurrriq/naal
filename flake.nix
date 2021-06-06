@@ -98,7 +98,7 @@
             ''
               install -dm755 "$out/bin"
               install -m755 bin/naal "$_"
-              wrapProgram "$out"/bin/naal --prefix PATH ${binPath}
+              wrapProgram "$out"/bin/naal --prefix PATH : ${binPath}
 
               install -dm755 "$doc"
               install -m444 src/_config.yml src/index.md docs/naal.pdf "$_"
